@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+    />
+    <link href="{% static 'encyclopedia/styles.css' %}" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="container-fluid">
+      <div class="row">
+        <div class="sidebar col-lg-2 col-md-3 bg-light p-3">
+          <h2>Wiki</h2>
+          <form action="{% url 'search' %}" method="get">
+            <input
+              class="form-control mb-2"
+              type="text"
+              name="q"
+              placeholder="Search Encyclopedia"
+            />
+            <button type="submit" class="btn btn-primary btn-block">
+              Search
+            </button>
+          </form>
+
+          <div><a href="{% url 'index' %}" class="btn btn-link">Home</a></div>
+          <div>
+            <a href="{% url 'create' %}" class="btn btn-link"
+              >Create New Page</a
+            >
+          </div>
+          <div>
+            <a href="{% url 'random_page' %}" class="btn btn-link"
+              >Random Page</a
+            >
+          </div>
+        </div>
+
+        <div class="main col-lg-10 col-md-9 p-3">
+          {% block body %}{% endblock %}
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
